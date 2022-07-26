@@ -36,7 +36,6 @@ public class Account implements UserDetails{
         return this.userId;
     }
 
-    // Vo의 userName !
     public String getUserName(){
         return this.userName;
     }

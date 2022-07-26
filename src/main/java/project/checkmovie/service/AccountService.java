@@ -13,19 +13,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Service
-@RequiredArgsConstructor // 생성자 자동 생성 및 final 변수를 의존관계를 자동으로 설정해 준다.
-public class AccountService implements UserDetailsService {
-    // 회원가입 시 저장시간을 넣어줄 DateTime형
+@RequiredArgsConstructor
+public class AccountService implements UserDetailsService{
     SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:sss");
     Date time = new Date();
     String localTime = format.format(time);
 
     private final UserMapper userMapper;
 
-    @Transactional // 트랜잭션 보장이 된 메소드로 설정 해준다.
+    @Transactional
     public void joinUser(Account account){
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        account.setUserPw(passwordEncoder.encode(account.getUserPw()));
+        account.setUserPw(passwordEncoder.encode(account.getPassword()));
         account.setUserAuth("USER");
         account.setAppendDate(localTime);
         account.setUpdateDate(localTime);

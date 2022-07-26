@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import project.checkmovie.domain.Account;
 import project.checkmovie.service.AccountService;
 
@@ -19,9 +20,9 @@ public class UserController {
      * localhost:8080 시 login 으로 redirect
      * @return
      */
-    @GetMapping // @RequestMapping(Method=RequestMethod.GET)과 같다.
+    @GetMapping
     public String root() {
-        return "redirect:/login";
+        return "redirect:/fe_main/04-login";
     }
 
     /**
@@ -30,7 +31,16 @@ public class UserController {
      */
     @GetMapping("/login")
     public String login(){
-        return "login";
+        return "fe_main/04-login";
+    }
+
+    /**
+     * 회원가입 폼
+     * @return
+     */
+    @GetMapping("/signup")
+    public String signUpForm() {
+        return "05-signup";
     }
 
     /**
@@ -43,24 +53,14 @@ public class UserController {
     }
 
     /**
-     * 회원가입 폼
-     * @return
-     */
-    @GetMapping("/signUp")
-    public String signUpForm() {
-        return "signup";
-    }
-
-    /**
      * 회원가입 진행
      * @param account
      * @return
      */
-
-    @PostMapping("/signUp") // @RequestMapping(Method=RequestMethod.POST)과 같다.
+    @PostMapping("/signup")
     public String signUp(Account account) {
         accountService.joinUser(account);
-        return "redirect:/login"; //로그인 구현 예정
+        return "redirect:/fe_main/04-login";
     }
 
     /**
