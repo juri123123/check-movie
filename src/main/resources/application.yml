@@ -1,0 +1,14 @@
+
+spring:
+  # H2 DB
+  datasource:
+    url: ""
+    username: ""
+    password: ""
+    driver-class-name: ""
+
+mybatis:
+  # mapper ?? ??
+  mapper-locations: query/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
